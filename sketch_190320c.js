@@ -7,15 +7,15 @@ var spins = [];
 var sampleIsPlaying;
 
 function setup() {
-  w=300;
+  w=500;
   sampleIsPlaying=true;
   h=w;
     for(var i=0; i<w; i++) {
     spins[i] = [];
 }
   beta=log(1+sqrt(2))/2;
-  q=400/w;
-      createCanvas(500, 400);
+  q=500/w;
+      createCanvas(500, 500);
   for (var x =0; x < w; x++) for (var y =0; y < h; y++) { 
     if (random(1.0) < 0.5) spins[x][y]=1; 
     else spins[x][y]=-1;
@@ -35,7 +35,7 @@ function draw() {
   dyn();
   }
   fill(255); 
-  text("beta=" + beta, 410, 30);
+ // text("beta=" + beta, 410, 30);
 }
 
 function keyPressed() {
