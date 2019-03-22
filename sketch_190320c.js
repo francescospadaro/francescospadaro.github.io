@@ -44,7 +44,7 @@ function keyPressed() {
 }
 
 function dyn() {
-  for (var i = 0; i < 20000; i++) mc_move();
+  for (var i = 0; i < 1000; i++) mc_move();
 }
 
 function mc_move() {
