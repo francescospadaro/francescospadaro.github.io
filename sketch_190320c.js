@@ -14,8 +14,8 @@ function setup() {
     spins[i] = [];
 }
   beta=log(1+sqrt(2))/2;
-  q=300/w;
-      createCanvas(300, 300);
+  q=400/w;
+      createCanvas(400, 400);
   for (var x =0; x < w; x++) for (var y =0; y < h; y++) { 
     if (random(1.0) < 0.5) spins[x][y]=1; 
     else spins[x][y]=-1;
