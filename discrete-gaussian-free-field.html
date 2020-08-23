@@ -5,18 +5,13 @@
     <head>
     <title>my HW</title>
     </head><body>
-
-     <div> <embed src="discrete-gaussian-free-field-example.pdf" width="800" height="700"> </div>
-       Manipulate[
-        Show[ListPlot3D[
-          Re[Fourier[
-            Table[(InverseErf[2 Random[] - 1] +
-                I InverseErf[2 Random[] - 1])*
-              If[j + k == 2, 0,
-               1/Sqrt[(Sin[(j - 1)*Pi/m]^2 + Sin[(k - 1)*Pi/n]^2)]], {j,
-              m}, {k, n}]]], ColorFunction -> "ValentineTones",
-          LabelStyle -> {FontFamily -> "CMU Serif", 11, GrayLevel[0]}],
-         Boxed -> False, ImageSize -> Large], {{m, 100}, 2, 500}, {{n, 100},
-         2, 500}]
+       <h2 style="color: #2e6c80;"><span style="color: #bb0000;">Mathematica Code:</span></h2>
+       <p>The following Mathematica code simulate a discrete Gaussian Free Field. <br />It is the code that appears in Scott Sheffield's Gaussian Free Field for Mathematicians (see <a title="Gaussian Free Field for Mathematicians" href="https://arxiv.org/abs/math/0312099" target="_blank" rel="noopener">https://arxiv.org/abs/math/0312099</a>) and it is based on sampling the discrete Fourier Modes of the dGFF.</p>
+       <blockquote>
+       <p>Manipulate[ Show[ListPlot3D[ Re[Fourier[ Table[(InverseErf[2 Random[] - 1] + I InverseErf[2 Random[] - 1])* If[j + k == 2, 0, 1/Sqrt[(Sin[(j - 1)*Pi/m]^2 + Sin[(k - 1)*Pi/n]^2)]], {j, m}, {k, n}]]], ColorFunction -&gt; "ValentineTones", LabelStyle -&gt; {FontFamily -&gt; "CMU Serif", 11, GrayLevel[0]}], Boxed -&gt; False, ImageSize -&gt; Large], {{m, 100}, 2, 500}, {{n, 100}, 2, 500}]</p>
+       </blockquote>
+       <h2 style="color: #2e6c80;"><span style="color: #bb0000;">An instance of dGFF </span></h2>
+              <p><br /><br />I</p>
+       <div> <embed src="discrete-gaussian-free-field-example.png" width="800" height="700"> </div>
     </body>
     </html>
