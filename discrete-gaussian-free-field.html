@@ -1,0 +1,22 @@
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>my HW</title>
+    </head><body>
+
+     <div> <embed src="discrete-gaussian-free-field-example.pdf" width="800" height="700"> </div>
+       Manipulate[
+        Show[ListPlot3D[
+          Re[Fourier[
+            Table[(InverseErf[2 Random[] - 1] +
+                I InverseErf[2 Random[] - 1])*
+              If[j + k == 2, 0,
+               1/Sqrt[(Sin[(j - 1)*Pi/m]^2 + Sin[(k - 1)*Pi/n]^2)]], {j,
+              m}, {k, n}]]], ColorFunction -> "ValentineTones",
+          LabelStyle -> {FontFamily -> "CMU Serif", 11, GrayLevel[0]}],
+         Boxed -> False, ImageSize -> Large], {{m, 100}, 2, 500}, {{n, 100},
+         2, 500}]
+    </body>
+    </html>
