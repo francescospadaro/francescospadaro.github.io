@@ -1,0 +1,145 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5099,        136]
+NotebookOptionsPosition[      4683,        120]
+NotebookOutlinePosition[      5018,        135]
+CellTagsIndexPosition[      4975,        132]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"CloudPublish", "[", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"ListPlot3D", "[", 
+       RowBox[{
+        RowBox[{"Re", "[", 
+         RowBox[{"Fourier", "[", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"InverseErf", "[", 
+                RowBox[{
+                 RowBox[{"2", " ", 
+                  RowBox[{"Random", "[", "]"}]}], "-", "1"}], "]"}], "+", 
+               RowBox[{"I", " ", 
+                RowBox[{"InverseErf", "[", 
+                 RowBox[{
+                  RowBox[{"2", " ", 
+                   RowBox[{"Random", "[", "]"}]}], "-", "1"}], "]"}]}]}], 
+              ")"}], "*", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"j", "+", "k"}], "\[Equal]", "2"}], ",", "0", ",", 
+               RowBox[{"1", "/", 
+                RowBox[{"Sqrt", "[", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Sin", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"j", "-", "1"}], ")"}], "*", 
+                    RowBox[{"Pi", "/", "m"}]}], "]"}], "^", "2"}], "+", 
+                   RowBox[{
+                    RowBox[{"Sin", "[", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"k", "-", "1"}], ")"}], "*", 
+                    RowBox[{"Pi", "/", "n"}]}], "]"}], "^", "2"}]}], ")"}], 
+                 "]"}]}]}], "]"}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", "m"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "n"}], "}"}]}], "]"}], "]"}], "]"}], ",", 
+        RowBox[{"ColorFunction", "->", "\"\<ValentineTones\>\""}], ",", 
+        RowBox[{"LabelStyle", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"FontFamily", "\[Rule]", "\"\<CMU Serif\>\""}], ",", "11", 
+           ",", 
+           RowBox[{"GrayLevel", "[", "0", "]"}]}], "}"}]}]}], "]"}], ",", 
+      RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m", ",", "100"}], "}"}], ",", "2", ",", "500"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"n", ",", "100"}], "}"}], ",", "2", ",", "500"}], "}"}]}], 
+   "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.806419692530982*^9, 3.806419711617448*^9}, {
+   3.806419753906505*^9, 3.8064197848843117`*^9}, {3.806419877216237*^9, 
+   3.806419903085271*^9}, {3.806420054053171*^9, 3.8064201401610126`*^9}, {
+   3.806420174349943*^9, 3.8064201859679947`*^9}, {3.806420221540501*^9, 
+   3.806420224309081*^9}, {3.8064202856350193`*^9, 3.806420287247279*^9}, {
+   3.806420543411624*^9, 3.806420548160433*^9}, {3.8065608503269176`*^9, 
+   3.8065609223504467`*^9}, {3.806561032450437*^9, 3.806561059059279*^9}, {
+   3.806561251828226*^9, 3.8065612624087267`*^9}, {3.807254994134255*^9, 
+   3.807255015862727*^9}, 3.807255666350662*^9, 
+   3.8072582630934973`*^9},ExpressionUUID->"9233f4c1-966e-4a0d-90ba-\
+208b63c52775"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/obj/01def5f9-10de-419c-bda4-4536e4115ef4\"\
+","https://www.wolframcloud.com/obj/01def5f9-10de-419c-bda4-4536e4115ef4"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/obj/01def5f9-10de-419c-bda4-4536e4115ef4"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{{3.8064201178114567`*^9, 3.8064201440838337`*^9}, {
+   3.806420183301941*^9, 3.806420189426209*^9}, 3.806420254182588*^9, 
+   3.806420317615634*^9, 3.806420505014657*^9, 3.806420579665847*^9, {
+   3.806560873103367*^9, 3.8065609227898493`*^9}, 3.8065610705031767`*^9, 
+   3.8065612631055183`*^9, 3.807255033767322*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"2b01fb68-67ed-4f26-8170-a857ac82b812"]
+}, Open  ]]
+},
+WindowSize->{943, 755},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 3272, 78, 178, "Input",ExpressionUUID->"9233f4c1-966e-4a0d-90ba-208b63c52775"],
+Cell[3855, 102, 812, 15, 37, "Output",ExpressionUUID->"2b01fb68-67ed-4f26-8170-a857ac82b812"]
+}, Open  ]]
+}
+]
+*)
+
+(* NotebookSignature KxTO01q#4XsqPA1opNFAkuK4 *)
