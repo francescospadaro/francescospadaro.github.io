@@ -1,6 +1,6 @@
-
     <html>
     <head>
+      <script crossorigin src="https://unpkg.com/wolfram-notebook-embedder@0.1/dist/wolfram-notebook-embedder.min.js"></script>
       <style>
 p.a {
   font-family:"Times New Roman", Times, serif;
@@ -14,14 +14,31 @@ p.c {
 </style>
     <title > Discrete Gaussian Free Field</title>
     </head><body>
+      <h2 style="color: #2e6c80;"><span style="color: #bb0000;"><p class="b">Play with dGFF</p></span></h2>
+      <p class="b">Change the number of modes m and n, the higher m and n the more the dGFF has a flavour of a continuous GFF.</p>
+               <div id="mma-notebook-container">
+               </div>
+               <script>
+               var container = document.querySelector("#mma-notebook-container")
+               var embedding = WolframNotebookEmbedder.embed(
+             'https://www.wolframcloud.com/obj/01def5f9-10de-419c-bda4-4536e4115ef4',
+                               container,
+                               {
+                                   width: 800,
+                                   maxHeight: 700,
+                                   allowInteract: true,
+                                   showRenderProgress: true
+                               }
+                           )
+           </script>
        <h2 style="color: #2e6c80;"><span style="color: #bb0000;"><p class="b">Mathematica Code:</p></span></h2>
-       <p class="b">The following Mathematica code simulates a discrete Gaussian Free Field. <br />It is the code that appears in Scott Sheffield's Gaussian Free Field for Mathematicians (see <a title="Gaussian Free Field for Mathematicians" href="https://arxiv.org/abs/math/0312099" target="_blank" rel="noopener">https://arxiv.org/abs/math/0312099</a>) and it is based on sampling the discrete Fourier Modes of the dGFF.</p>
+       <p class="b">The following Mathematica code simulate a discrete Gaussian Free Field. <br />It is the code that appears in Scott Sheffield's Gaussian Free Field for Mathematicians (see <a title="Gaussian Free Field for Mathematicians" href="https://arxiv.org/abs/math/0312099" target="_blank" rel="noopener">https://arxiv.org/abs/math/0312099</a>) and it is based on sampling the discrete Fourier Modes of the dGFF.</p>
        <blockquote>
        <p class="c">Manipulate[ Show[ListPlot3D[ Re[Fourier[ Table[(InverseErf[2 Random[] - 1] + I InverseErf[2 Random[] - 1])* If[j + k == 2, 0, 1/Sqrt[(Sin[(j - 1)*Pi/m]^2 + Sin[(k - 1)*Pi/n]^2)]], {j, m}, {k, n}]]], ColorFunction -&gt; "ValentineTones", LabelStyle -&gt; {FontFamily -&gt; "CMU Serif", 11, GrayLevel[0]}], Boxed -&gt; False, ImageSize -&gt; Large], {{m, 100}, 2, 500}, {{n, 100}, 2, 500}]</p>
        </blockquote>
        <h2 style="color: #2e6c80;"><span style="color: #bb0000;"><p class="b">An instance of dGFF </p></span></h2>
               <p><br /><br /></p>
-       <div> <embed src="discrete-gaussian-free-field-example.png" width="800" height="700"> </div>
+              <div> <embed src="discrete-gaussian-free-field-example.png" width="800" height="700"> </div>
     </body>
     </html>
 
