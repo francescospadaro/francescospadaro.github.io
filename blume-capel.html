@@ -1,0 +1,240 @@
+<html>
+<head>
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/cmu-serif" type="text/css"/>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="blume-capel.js"></script>
+<title>Blume Capel Model</title>
+</head>
+<style> body {
+   font-family: 'CMUSerifRoman';
+   font-weight: normal;
+   font-style: normal;
+}
+
+#big {
+    margin: 0 auto;
+    width: 1024px;
+    padding: 0px;
+    line-height: 2em;
+}
+
+#ising {
+    float: left;
+    color: black;
+    width: 512px;
+    height: 512px;
+    position: 'absolute';
+    left: 10px;
+    top: 10px;
+        border: solid 1px black;
+}
+
+.withspace {
+  padding:10px;
+}
+
+.code {
+   font-family: 'CMUSerifRoman';
+   font-weight: normal;
+   font-style: normal;
+   font-size: 12pt;
+}
+
+pre.code {
+    margin: 1px;
+}
+
+#panelcontainer {
+    float: none;
+    left: 10px;
+    top: 20px;
+    width: 512px;
+    height: 512px;
+position: 'relative';
+}
+
+#description {
+    float: right;
+    left: 10px;
+    top: 10px;
+    width: 500px;
+    height: 500px;
+position: 'absolute';
+}
+
+#phasediagram {
+  float: right;
+  left: 10px;
+  top: 10px;
+  width: 500px;
+  height: 500px;
+position: 'absolute';
+}
+
+#panel {
+    padding: 0px;
+}
+
+#slider {
+    width: 10em;
+}
+
+#helptext {
+    padding-left: 0px;
+    padding-bottom: 0;
+}
+
+.help_label  {
+    background-color: #bb0000;
+    position: relative;
+    padding-right: 5px;
+    width: 8em;
+    float: right;
+    text-align: right;
+}
+
+.eb_label  {
+    position: relative;
+    padding-right: 10px;
+    width: 10em;
+    float: left;
+    text-align: right;
+}
+
+.eb_span  {
+    position: relative;
+    top: -6px;
+   font-family: 'CMUSerifRoman';
+   font-weight: normal;
+   font-style: normal;
+    font-size: 13px;
+}
+
+</style>
+<body>
+      <div id='big'>
+    <center><h2 style="color: #2e6c80;"><span style="color: #bb0000;"><p class="b">Blume-Capel model</p></span></h2>
+      <pre class='code' id='label_time'></pre>
+      <pre class='code' id='label_energy'></pre>
+      <pre class='code' id='label_mag'></pre>
+</center>
+    <div id='ising'>
+        <canvas id='canvas' height=512 width=512></canvas>
+
+    <div id='panelcontainer'>
+        <!-- ===================  add control panel items between here ============== -->
+        <div id='panel'>
+            <br>
+            <div id='isinggraph'>
+                <canvas id='canvas-graph' height=0 width=0></canvas>
+            </div>
+            <div>
+                <label class='eb_label' for="temp" title="Temperature">\(T\)</label>
+                <input style='width:150px;' type="range" id="temp" min=-5 max=2 step=0.0001 value=0 oninput='update_temp()' onchange="update_temp()"></input>
+                <span onclick='dotextbox(this.id)' class='eb_span' id="label_temp"></span>
+                <input style='width: 50px; display: none;' id='label_temp_input' type='text' value='' onblur='undotextbox(this.id)'>
+            </div>
+            <div>
+                <label class='eb_label' for="field" title="External field">\(T\Delta\)</label>
+                <input style="width:150px;" type="range" id="field" min=-5 max=5 step=0.00001 value=0.0 oninput='update_field()' onchange="update_field()"></input>
+                <span onclick='dotextbox(this.id)' class='eb_span' id="label_field"></span>
+                <input style='width: 80px; display: none;' id='label_field_input' type='text' value='' onblur='undotextbox(this.id)'>
+            </div>
+            <div>
+                <label class='eb_label' for="frames">Boundary conditions</label>
+                <!--<input type='text' id='num' value=0></input>
+                <input type='button' id='changenum' value='Change' onclick='change_num()'></input>-->
+                <select id='changeboundary' onchange='change_boundary()'>
+                    <option value="free" selected='selected'>Free</option>
+                    <option value="homogeneous">Homogeneous</option>
+                    <option value="dobrushinplusminus">Dobrushin +/-</option>
+                    <option value="dobrushinplusfree">Dobrushin +/Free</option>
+                    <!--<option value="eavg">&lt;e&gt;(t)</option>-->
+                    <!--<option value="mavg">&lt;m&gt;(t)</option>-->
+                </select>
+            </div>
+            <div class="withspace">
+         <!--    <label class='eb_label' for='method'>Update method:</label>
+             <input type='radio' name='method' onclick='update_method()' checked=true id='method_metropolis' value='metropolis'>metropolis</input>
+          <input type='radio' name='method' onclick='update_method()' id='method_wolff' value='wolff'>wolff</input> -->
+         </div>
+            <div>
+                <label class='eb_label' for="frames" title="Samples per redraw">Lag</label>
+                <input style="width:150px;" type="range" id="frames" min=-2 max=2 step=0.00001 value=0 oninput='update_frames()' onchange="update_frames()"></input>
+                <span onclick='dotextbox(this.id)' class='eb_span' id="label_frames"></span>
+                <input style='width: 80px; display: none;' id='label_frames_input' type='text' value='' onblur='undotextbox(this.id)'>
+            </div>
+
+            <div class="withspace">
+                <label class='eb_label'>Lattice size</label>
+                <select id='changenum' onchange='change_num()'>
+                    <option value="512" selected="selected">512</option>
+                    <option value="256">256</option>
+                    <option value="128">128</option>
+                    <option value="64">64</option>
+                    <option value="32">32</option>
+                    <option value="16">16</option>
+                </select>
+            </div>
+            <!--<div class="withspace">
+                <label class='eb_label' for='num'>Graph type</label>
+                <input type='text' id='num' value=0></input>
+                <input type='button' id='changenum' value='Change' onclick='change_num()'></input>-->
+                <!--<select id='changegraph' onchange='change_graph()'>
+                    <option value="none">none</option>
+                    <option value="energy" selected='selected'>e(t)</option>
+                    <option value="mag">m(t)</option> -->
+                    <!--<option value="eavg">&lt;e&gt;(t)</option>-->
+                    <!--<option value="mavg">&lt;m&gt;(t)</option>-->
+              <!--  </select>
+            </div> -->
+            <div class="withspace">
+            </div>
+            <div>
+                <center>
+                <!--<input type='button' id='dostep' value='Step'   onclick='update_step()'></input>-->
+                <input type='button' id='pause' value='Pause'   onclick='update_pause()'></input>
+                <input type='button' id='restart' value='Restart' onclick='update_restart()'></input>
+                <!--<input type='button' id='resetdata' value='Reset data' onclick='init_measurements()'></input>-->
+                <br>
+                <!-- <input type='button' id='downloaddata' value='Download data' onclick='download_measurements()'></input>
+                <input type='button' id='downloadgraph' value='Download graph' onclick='download_graph()'></input>
+                <input type='button' id='downloadgraph' value='Download field' onclick='download_field()'></input> -->
+                </center>
+            </div>
+        </div>
+
+        <!-- ==========================   and here ================================= -->
+    </div>
+    </div>
+<div id='description' >
+  <div onclick="showCoords(event)">
+        <embed src="tim-phase-diagram.png" width="500" height="362" >
+          <table style="width:50%">
+  <tr>
+    <td>Temperature:</td>
+    <td align=right>\(T={1\over \beta}=\)</td>
+    <td id="value-temp">0.6100</td>
+  </tr>
+  <tr>
+    <td >Fugacity:</td>
+    <td align=right>\(\Delta=\)</td>
+    <td id="value-h">3.222</td>
+  </tr>
+</table>
+        </div>
+<p class="b" align="justify">Simulation of the Blume-Capel model based on Metropolis algorithm: after initialization the system moves around typical configurations by randomly flipping spins and accepting/rejecting the configuration based on the relative difference in energies (i.e. ratio of probabilties).
+  <br>
+  The <strong>Blume-Capel model</strong> is an Ising model with vacancies: spins takes values	{&plusmn1, 0} with probabilty \(\mathbb{P}[\sigma] \propto e^{-{1\over T} H[\sigma]}\) where the Hamiltonian is given by
+  \[ H[\sigma] = -\sum_{i\sim j}\sigma_i\sigma_j-T \Delta\sum_i\sigma_i^2\]
+  The Temperature \( T\) and the Fugacity \( \Delta \) can be adjusted either with the sliders or by clicking on the phase diagram - their default values are set close to the numerically conjectured value of the critic point (for the square lattice) \(T_c\sim.610\) and \(\Delta_c \sim3.222\).
+  <br>
+  Simulations can be performed for several lattice sizes and with different boundary conditions:
+<ul>
+  <li>Free (no condition on the spins on the boundary); </li>
+  <li>Homogeneous (black (+1) spins on the whole boundary);</li>
+  <li> Dobrushin (mixed) +/- boundary conditions with +1 spins on one half of the boundary and -1 spins on the other half;</li>
+  <li>and Dobrushin +/free boundary conditions with +1 spins on one half of the boundary and no condition on the other half.</li>
+</ul>
+</html>
