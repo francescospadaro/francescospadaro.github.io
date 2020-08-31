@@ -1,6 +1,9 @@
 <html>
 <head>
- <script src="scaling-brownian-motion.js"></script>
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/cmu-serif" type="text/css"/>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="scaling-brownian-motion.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
@@ -8,25 +11,29 @@
   <script language="javascript" type="text/javascript" src="scaling-brownian-motion.js"></script>
   <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
   <!-- This line removes any default padding and style.
-       You might only need one of these values set. -->
+  You might only need one of these values set. -->
   <style> body { padding: 0; margin: 0; }
   p.a {
-  font-family:"Times New Roman", Times, serif;
+    font-family: 'CMUSerifRoman';
+    font-weight: normal;
+    font-style: normal;
   }
-p.b {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  p.b {
+    font-family: 'CMUSerifRoman';
+    font-weight: normal;
+    font-style: normal;
+  }
   p.c {
-  font-family: Courier, monospace;
-}
+    font-family: Courier, monospace;
+  }
 </style>
-  <style>
+<style>
 .collapsible {
   background-color: #bb0000;
   color: white;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  width: 1000px;
   border: none;
   text-align: left;
   outline: none;
@@ -44,96 +51,106 @@ p.b {
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
 }
+
+#big {
+  color: black;
+  width: 512px;
+  position: 'absolute';
+  left: 10px;
+  top: 10px;
+      border: solid 1px black;
+}
+
 </style>
-  <title>Brownian Motion and scaling</title>
+<title>Brownian Motion and scaling</title>
 </head>
 <body>
   <h2 style="color: #2e6c80;"><span style="color: #bb0000;"><p class="b">Brownian Motion and its scaling</p></span></h2>
-<p class="b">The following script reproduces the simulation proposed on this page.</p>
-<button type="button" class="collapsible">View code</button>
-<div class="content">
-  <p class="c">
-var num;<br>
-var range;<br>
-var delta;<br>
-var x=[];<br>
-var yp=[];<br>
-var ym=[];<br>
-var p=[];<br>
-var dx;<br>
-var dz;<br>
-var dw;<br>
-var s;<br>
-var t;<br>
-var count;<br>
-var record;<br>
-<br>
-function setup() {<br>
-  num=2000;<br>
-  range=2;<br>
-  delta=1;<br>
-  createCanvas(1000, 500);<br>
-  frameRate(20);<br>
-  count=0;<br>
-  s=1;<br>
-  t=1;<br>
-  record=false;<br>
-  x[0]=0;<br>
-  yp[0]=0;<br>
-  ym[0]=0;<br>
-  p[0]=0;<br>
-}<br>
-<br>
-function draw()<br>
-{<br>
-  background(51);<br>
-  count = count+1;<br>
-  dx=x[x.length-1]+delta;<br>
-  x=append(x, dx);<br>
-  dw=range*sqrt(x[x.length-2]);<br>
-  p=append(p, dw);<br>
-  var dyp=yp[yp.length-1]+random(-range, range);<br>
-  yp=append(yp, dyp);<br>
-  var dym=ym[ym.length-1]+random(-range, range);<br>
-  ym=append(ym, dym);<br>
-  stroke(256, 0, 0);<br>
-  //// Draw a line connecting the points<br>
-  if (record) {<br>
-    s=width/x[x.length-1];<br>
-    t=height/sqrt(x[x.length-1])/4;<br>
-    translate(0, height/2);<br>
-    scale(s, t);<br>
-    translate(0, -height/2);<br>
-  }<br>
-  for (var i=1; i<x.length-1; i++) {<br>
-    stroke(256, 0, 0);<br>
-    line(x[i-1], yp[i-1]+height/2, x[i], yp[i]+height/2);<br>
-    stroke(256, 256, 0);<br>
-    line(x[i-1], p[i-1]+height/2, x[i], p[i]+height/2);<br>
-    line(x[i-1], -p[i-1]+height/2, x[i], -p[i]+height/2);<br>
-  }<br>
-  if (count>0) {<br>
-    record=true;<br>
-  }<br>
-}<br>
-  </p>
-</div>
+  <p class="b">The following script reproduces the simulation proposed on this page.</p>
+  <button type="button" class="collapsible"   width=512px>View code</button>
+  <div id='big' class="content">
+    <p class="c">
+      var num;<br>
+      var range;<br>
+      var delta;<br>
+      var x=[];<br>
+      var yp=[];<br>
+      var ym=[];<br>
+      var p=[];<br>
+      var dx;<br>
+      var dz;<br>
+      var dw;<br>
+      var s;<br>
+      var t;<br>
+      var count;<br>
+      var record;<br>
+      <br>
+      function setup() {<br>
+        num=2000;<br>
+        range=2;<br>
+        delta=1;<br>
+        createCanvas(512, 256);<br>
+        frameRate(20);<br>
+        count=0;<br>
+        s=1;<br>
+        t=1;<br>
+        record=false;<br>
+        x[0]=0;<br>
+        yp[0]=0;<br>
+        ym[0]=0;<br>
+        p[0]=0;<br>
+      }<br>
+      <br>
+      function draw()<br>
+      {<br>
+        background(51);<br>
+        count = count+1;<br>
+        dx=x[x.length-1]+delta;<br>
+        x=append(x, dx);<br>
+        dw=range*sqrt(x[x.length-2]);<br>
+        p=append(p, dw);<br>
+        var dyp=yp[yp.length-1]+random(-range, range);<br>
+        yp=append(yp, dyp);<br>
+        var dym=ym[ym.length-1]+random(-range, range);<br>
+        ym=append(ym, dym);<br>
+        stroke(256, 0, 0);<br>
+        //// Draw a line connecting the points<br>
+        if (record) {<br>
+          s=width/x[x.length-1];<br>
+          t=height/sqrt(x[x.length-1])/4;<br>
+          translate(0, height/2);<br>
+          scale(s, t);<br>
+          translate(0, -height/2);<br>
+        }<br>
+        for (var i=1; i<x.length-1; i++) {<br>
+          stroke(256, 0, 0);<br>
+          line(x[i-1], yp[i-1]+height/2, x[i], yp[i]+height/2);<br>
+          stroke(256, 256, 0);<br>
+          line(x[i-1], p[i-1]+height/2, x[i], p[i]+height/2);<br>
+          line(x[i-1], -p[i-1]+height/2, x[i], -p[i]+height/2);<br>
+        }<br>
+        if (count>0) {<br>
+          record=true;<br>
+        }<br>
+      }<br>
+    </p>
+  </div>
 
-<script>
-var coll = document.getElementsByClassName("collapsible");
-var i;
+  <script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
 </script>
 
 </body>
